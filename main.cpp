@@ -2,8 +2,8 @@
 
 #include <iostream>
 #include <vector>
-#include <fstream>
-#include "funcoesArquivo.h"
+#include "Tarefa2.h"
+
 using namespace std;
 
 int main(){
@@ -17,7 +17,6 @@ int main(){
 	
 	leGrafo("G1",&G1);
 	leGrafo("G2",&G2);
-	cout << G1.listaAdj.size() << endl;
 	
 	/* Inicializa as outras estruturas de dados para G1 */
 	inicializaMatrizAdj(&G1);
