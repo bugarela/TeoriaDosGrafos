@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include "Tarefa1.h"
+#include "estruturas.h"
 using namespace std;
 
 void imprimeMatriz(vector < vector<int> > matriz){
@@ -50,7 +48,7 @@ void imprimeListaArestas(Grafo G){
 void mostraMenu(){
 	cout << endl;
 	cout << "Menu" << endl;
-	cout << "[0] Encerrar\n[1] Matriz de Adjacencia\n[2] Lista de Adjacencia\n[3] Grau de Cada No\n[4] Inserir No\n[5] Remover No\n[6] Complemento do Grafo\n[7] Matriz de Incidencia\n[8] Lista de Arestas" << endl;	
+	cout << "[0] Encerrar\n[1] Matriz de Adjacencia\n[2] Lista de Adjacencia\n[3] Grau de Cada No\n[4] Inserir No\n[5] Remover No\n[6] Complemento do Grafo\n[7] Matriz de Incidencia\n[8] Lista de Arestas\n[9] Conexidade do Grafo" << endl;	
 	cout << endl;
 }
 

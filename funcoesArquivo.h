@@ -1,6 +1,4 @@
 #include <fstream>
-#include <iostream>
-#include <vector>
 #include "funcoesImpressao.h"
 using namespace std;
 
