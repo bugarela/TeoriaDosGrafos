@@ -70,6 +70,9 @@ int main(){
 				cout << "Lista de Arestas: " << endl;
 				imprimeListaArestas(G1);
 				break;
+			case '9':
+				cout << (ehConexo(G1) ? "G1 - conexo" : "G1 - nao conexo") << endl;
+				break;
 				
 				
 		}
