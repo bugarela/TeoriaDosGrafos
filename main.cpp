@@ -8,7 +8,8 @@ using namespace std;
 
 int main(){
 	int no,conexao;
-	char ch,op = '?';
+	char ch;
+	int op = 1;
 	
 	Grafo G1, G2;
 	
@@ -33,47 +34,49 @@ int main(){
 	}
 	
 	/* Interação do menu em loop */
-	while(op != '0'){
+	while(op != 0){
 		mostraMenu();
 		fflush(stdin);
 		cin >> op;
 		switch (op){
-			case '1':
+			case 1:
 				cout << "Matriz de Adjacencia: " << endl;
 				imprimeMatriz(G1.matrizAdj);
 				break;
-			case '2':
+			case 2:
 				cout << "Lista de Adjacencia: " << endl;
 				imprimeListaAdj(G1);
 				break;
-			case '3':
+			case 3:
 				cout << "Grau de cada no:" << endl;	
 				imprimeGrauDeCadaNo(G1);
 				break;
-			case '4':
+			case 4:
 				inserirNo(&G1);
 				cout << "No inserido!" << endl;	
 				break;
-			case '5':
+			case 5:
 				removerNo(&G1);
 				cout << "No removido!" << endl;	
 				break;
-			case '6':
+			case 6:
 				cout << "Matriz de Adjacencia do complemento de G1: " << endl;
 				imprimeComplemento(G1);
 				break;
-			case '7':
+			case 7:
 				cout << "Matriz de Incidencia: " << endl;
 				imprimeMatriz(G1.matrizInc);
 				break;
-			case '8':
+			case 8:
 				cout << "Lista de Arestas: " << endl;
 				imprimeListaArestas(G1);
 				break;
-			case '9':
+			case 9:
 				cout << (ehConexo(G1) ? "G1 - conexo" : "G1 - nao conexo") << endl;
 				break;
-				
+			case 10:
+				cout << "Quantidade de Componentes: " << qtdComponentes(G1) << endl;
+				break;
 				
 		}
 	}
