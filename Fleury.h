@@ -1,24 +1,23 @@
 #include "conexidade.h"
 using namespace std;
 
-Grafo removeAresta(pair<int,int> aresta, Grafo G){
-	Grafo GTemp;
-	GTemp.listaAdj = G.listaAdj;
+void removeAresta(pair<int,int> aresta, Grafo G){
+
 	int a = aresta.first;
 	int b = aresta.second;
 	
-	for(auto conexao : GTemp.listaAdj[a])
+	for(auto conexao : G.listaAdj[a])
 		if(conexao = b)
-			GTemp.listaAdj[a].erase(GTemp.listaAdj[a].begin()+conexao);
-	for(auto conexao : GTemp.listaAdj[b])
+			G.listaAdj[a].erase(G.listaAdj[a].begin()+conexao);
+	for(auto conexao : G.listaAdj[b])
 		if(conexao = a)
-			GTemp.listaAdj[b].erase(GTemp.listaAdj[b].begin()+conexao);
-			
-	return GTemp;
+			G.listaAdj[b].erase(G.listaAdj[b].begin()+conexao);
+
 }
 
 bool ehPonte(pair<int,int> aresta, Grafo G){
-	Grafo GTemp = removeAresta(aresta,G);
+	Grafo GTemp = G;
+	removeAresta(aresta,GTemp);
 	if(!ehConexo(GTemp))
 		return false;
 	return true;
@@ -29,14 +28,33 @@ bool ehPonte(pair<int,int> aresta, Grafo G){
 		return false;
 	
 	int noAtual = 0;
-	int noDestino = G.ListaAdj[0][0]; // grafo conexo, logo sabe-se que todos os nós tem ao menos uma conexão
+	int noDestino; 
 	int i=0;
 	
-	while(ehPonte(<noAtual,noDestino>,G)){
-		i++;
-		if(G.ListaAdj[noAtual].size()>=i)
-			noDestino=G.ListaAdj[noAtual][i];
+	Grafo GTemp = G;
+	
+	while (noDestino != 0){
+		
+		if(GTemp.listaAdj[noAtual].size() == 0)
+			return false;
 		else
+			noDestino = GTemp.listaAdj[noAtual][0];
+			
+		while(ehPonte(<noAtual,noDestino>,G)){
+			
+			i++;
+			
+			if(GTemp.listaAdj[noAtual].size()<i)
+				noDestino=GTemp.listaAdj[noAtual][i];
+			else
+				break;
+		}
+		
+		removeAresta(<noAtual,noDestino>,GTemp);
+		noAtual = noDestino;
+	}
+	
+	return true;
 			
 	
 }*/
