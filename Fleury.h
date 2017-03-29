@@ -24,34 +24,38 @@ bool ehPonte(pair<int,int> aresta, Grafo G){
 }
 
 /*bool ehEuclidiano(Grafo G){
+	
 	if(!ehConexo(G))
 		return false;
+		
+	Grafo GTemp = G;
 	
 	int noAtual = 0;
-	int noDestino; 
-	int i=0;
-	
-	Grafo GTemp = G;
+	int noDestino = GTemp.listaAdj[noAtual][0]; 
+	int i;
 	
 	while (noDestino != 0){
 		
-		if(GTemp.listaAdj[noAtual].size() == 0)
-			return false;
-		else
-			noDestino = GTemp.listaAdj[noAtual][0];
-			
+		i=0;
+					
 		while(ehPonte(<noAtual,noDestino>,G)){
 			
 			i++;
 			
-			if(GTemp.listaAdj[noAtual].size()<i)
-				noDestino=GTemp.listaAdj[noAtual][i];
+			if(GTemp.listaAdj[noAtual].size()<=i)
+				noDestino=GTemp.listaAdj[noAtual][i-1];
 			else
 				break;
 		}
 		
 		removeAresta(<noAtual,noDestino>,GTemp);
+		GTemp.listaAdj.erase(GTemp.listaAdj.begin() + noInicial);
 		noAtual = noDestino;
+		
+		if(GTemp.listaAdj[noAtual].size() == 0)
+			return false;
+		else
+			noDestino = GTemp.listaAdj[noAtual][0];
 	}
 	
 	return true;
