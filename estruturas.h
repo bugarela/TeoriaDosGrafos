@@ -89,18 +89,30 @@ void inicializaMatrizInc(Grafo *G){
 	}
 }
 
-int grauNo(int no, Grafo G){
+int grauEntrada(int no, Grafo G){
 	int dIn = 0;
-	int dOut = G.listaAdj[no].size(); // quantas conexões o nó tem é o mesmo que o número de elementos referentes a ele na lista de adjacencia (que seria a mesma coisa que a soma da linha da matriz)
 	
-	if(ehDirecionado(G)) // se for direcionado, conta o grau de entrada (dIn) e soma com o grau de saída. 
-		for(int i=0;i<G.matrizAdj.size();i++)
+	for(int i=0;i<G.matrizAdj.size();i++)
 			dIn += G.matrizAdj[i][no];
-			
-	return (dIn + dOut); // se for não-direcionado, dIn = 0 e dOut = d
+		
+	return dIn;
 }
 
-void inserirNo(Grafo *G){
+int grauSaida(int no, Grafo G){
+	return G.listaAdj[no].size();
+}
+
+int grauNo(int no, Grafo G){
+	
+	if(!ehDirecionado(G)) // se não for direcionado, retorna o número de conexões daquele nó
+		return G.listaAdj[no].size(); // quantas conexões o nó tem é o mesmo que o número de elementos referentes a ele na lista de adjacencia (que seria a mesma coisa que a soma da linha da matriz)
+		
+	return (grauEntrada(no,G) + grauSaida(no,G)); // se não, calcula o grau de entrada mais o de saída
+	
+	
+}
+
+void insereNo(Grafo *G){
 	char cmanter='?', ch = '?'; // variáveis para a entrada de dados
 	bool manter = false;
 	
@@ -150,11 +162,7 @@ void inserirNo(Grafo *G){
 	
 }
 
-void removerNo(Grafo *G){
-	int no;
-	cout << "No a ser removido: ";
-	fflush(stdin);
-	cin >> no;
+void removeNo(int no, Grafo *G){
 	
 	// remove da matriz
 	G->matrizAdj.erase(G->matrizAdj.begin() + no); // apaga linha
@@ -162,7 +170,6 @@ void removerNo(Grafo *G){
 	for (int i=0;i<G->matrizAdj.size();i++) // apaga coluna (n-ésimo elemento de cada linha)
 		G->matrizAdj[i].erase(G->matrizAdj[i].begin() + no);
 	
-	cout << "ok\n";
 	// remove da lista
 	
 	G->listaAdj.erase(G->listaAdj.begin() + no); // remove a linha referente ao nó

@@ -52,11 +52,15 @@ int main(){
 				imprimeGrauDeCadaNo(G1);
 				break;
 			case 4:
-				inserirNo(&G1);
+				insereNo(&G1);
 				cout << "No inserido!" << endl;	
 				break;
 			case 5:
-				removerNo(&G1);
+				int no;
+				cout << "No a ser removido: ";
+				fflush(stdin);
+				cin >> no;
+				removeNo(no,&G1);
 				cout << "No removido!" << endl;	
 				break;
 			case 6:
@@ -76,6 +80,9 @@ int main(){
 				break;
 			case 10:
 				cout << "Quantidade de Componentes: " << qtdComponentes(G1) << endl;
+				break;
+			case 11:
+				cout << (ehEuleriano(G1) ? "Euleriano" : "Nao-Euleriano") << endl;
 				break;
 				
 		}
