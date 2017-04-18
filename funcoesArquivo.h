@@ -36,6 +36,37 @@ void leGrafo(string grafo, Grafo *G){
         cout << "Grafo " << grafo << " carregado." << endl;
         
 	}
+	
+	int n = G->listaAdj.size();
+	vector<int> lpesos;
+	lpesos.resize(0);
+	
+	for(int j=0;j<n;j++)
+		lpesos.push_back(1);
+		
+	for(int i=0;i<n;i++)
+		G->pesos.push_back(lpesos); // preenche pesos com 1's
+	
+	ifstream arquivoP (grafo + "pesos.txt");
+	
+    if (arquivoP.is_open()){
+    	
+    	int a,b,peso;
+        
+        while(arquivoP >> a){ 
+		
+			arquivoP >> b >> peso;
+			G->pesos[a][b] = peso;
+		
+		}
+		
+        arquivoP.close();
+        
+        cout << "Pesos de " << grafo << " carregados." << endl;
+        
+	}
+	
+	
 }
 
 void escreveGrafo(string grafo, Grafo G){

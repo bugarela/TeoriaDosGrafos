@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "Fleury.h"
+#include "Dijkstra.h"
 
 using namespace std;
 
@@ -15,9 +15,12 @@ int main(){
 	
 	G1.listaAdj.resize(0);
 	G2.listaAdj.resize(0);
+	G1.pesos.resize(0);
+	G2.pesos.resize(0);
 	
 	leGrafo("G1",&G1);
 	leGrafo("G2",&G2);
+	
 	
 	/* Inicializa as outras estruturas de dados para G1 */
 	inicializaMatrizAdj(&G1);
@@ -84,7 +87,12 @@ int main(){
 			case 11:
 				cout << (ehEuleriano(G1) ? "Euleriano" : "Nao-Euleriano") << endl;
 				break;
-				
+			case 12:
+				cout << "No inicial: ";
+				cin >> no;
+				dijkstra(no,G1);
+				break;
+							
 		}
 	}
 	

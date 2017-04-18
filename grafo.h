@@ -7,5 +7,6 @@ typedef struct{
 	vector <vector <int> > matrizAdj;
 	vector <vector <int> > matrizInc;
 	vector <pair <int,int> > listaArestas;
+	vector <vector <int> > pesos;
 	
 }Grafo;
