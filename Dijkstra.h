@@ -3,26 +3,29 @@ using namespace std;
 
 #define INFINITO 2147483647
 
-void dijkstra(int noInicial, Grafo G){
+bool dijkstra(int noInicial, Grafo G){
 	vector<int> estimativas;
 	vector<int> precedentes;
 	int n = G.listaAdj.size();
 	estimativas.resize(n);
 	precedentes.resize(n);
-	
-	for(int valor : estimativas)
-		valor = INFINITO;
-	
+
 	set<int> restantes = set<int>();
-	for(int i=0;i<n;i++)
-		restantes.insert(i); 
+	for(int i=0;i<n;i++){
+		estimativas[i] = INFINITO;
+		precedentes[i] = -1;
+		restantes.insert(i);
+	}
+	
+	if (!(busca(noInicial,G,restantes)).empty())
+		return false;	
 	
 	int noAtual = noInicial;
 	int menorEstimativa;
 	estimativas[noInicial] = 0;
 	precedentes[noInicial] = noInicial;
 	
-	while(restantes.size() > 0){
+	while(!restantes.empty()){
 		
 		for(int noDestino : G.listaAdj[noAtual])
 			if(restantes.find(noDestino) != restantes.end())
@@ -43,18 +46,24 @@ void dijkstra(int noInicial, Grafo G){
 			
 	}
 	
+	cout << endl;
+	cout << "\tNos: \t";
 	for(int i=0; i<n; i++)
 		cout << i << " ";
 	cout << endl;
 	
+	cout << "Estimativas: \t";
 	for(int estimativa : estimativas)
 		cout << estimativa << " ";
 	cout << endl;
 	
+	cout << "Precedentes: \t";
 	for(int precedente : precedentes)
 		cout << precedente << " ";
 	cout << endl;
 	
 	cout << endl;
+	
+	return true;
 	
 }

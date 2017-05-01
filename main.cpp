@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "Dijkstra.h"
+#include "buscas.h"
 
 using namespace std;
 
@@ -90,7 +90,22 @@ int main(){
 			case 12:
 				cout << "No inicial: ";
 				cin >> no;
-				dijkstra(no,G1);
+				if (!dijkstra(no,G1))
+					cout << "Grafo nao conexo a partir de " << no << endl;
+				break;
+			case 13:
+				cout << "No inicial: ";
+				cin >> no;
+				for(int i : BFS(no,G1))
+					cout << i << " ";
+				cout << endl;
+				break;
+			case 14:
+				cout << "No inicial: ";
+				cin >> no;
+				for(int i : DFS(no,G1))
+					cout << i << " ";
+				cout << endl;
 				break;
 							
 		}
