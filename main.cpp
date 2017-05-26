@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <vector>
-#include "buscas.h"
+#include "MST.h"
 
 using namespace std;
 
@@ -106,6 +106,9 @@ int main(){
 				for(int i : DFS(no,G1))
 					cout << i << " ";
 				cout << endl;
+				break;
+			case 15:
+				kruskal(G1);
 				break;
 							
 		}

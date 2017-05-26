@@ -2,6 +2,9 @@
 #include "grafo.h"
 using namespace std;
 
+bool compara(Aresta a, Aresta b){
+	return a.peso < b.peso; 
+}
 // A lista de Adjacencia é inicializada na leitura do arquivo (ver funcao main), e as outras estruturas sao inicializadas a partir dela.
 
 void inicializaMatrizAdj(Grafo *G){
@@ -43,14 +46,15 @@ void inicializaListaArestas(Grafo *G){
 	
 	// A Lista de Arestas é uma lista de pares, onde o primeiro elemento do par é o vértice de saída e o segundo é o vértice de entrada
 	
-	pair <int,int> aresta;
+	Aresta aresta;
 	
 	if(ehDirecionado(*G)){ // Caso G seja direcionado, todas as conexoes formam arestas únicas
 	
 		for(int i=0; i<nNos; i++)
 			for(int j=0; j<G->listaAdj[i].size(); j++){ // cria uma aresta com cada conexao de cada nó na lista de adjacência, e coloca a aresta na lista
-				aresta.first = i;
-				aresta.second = G->listaAdj[i][j];
+				aresta.x = i;
+				aresta.y = G->listaAdj[i][j];
+				aresta.peso = G->pesos[i][aresta.y];
 				G->listaArestas.push_back(aresta);
 			}
 	
@@ -59,8 +63,9 @@ void inicializaListaArestas(Grafo *G){
 		for(int i=0; i<nNos; i++)
 			for(int j=i; j<nNos; j++){
 				for(int k=0;k<G->matrizAdj[i][j];k++){ // cria uma aresta para cada conexao da matriz de adjacencia, e coloca a aresta na lista
-					aresta.first = i;
-					aresta.second = j;
+					aresta.x = i;
+					aresta.y = j;
+					aresta.peso = G->pesos[i][aresta.y];
 					G->listaArestas.push_back(aresta);
 				}
 			}
@@ -84,8 +89,8 @@ void inicializaMatrizInc(Grafo *G){
 		nSaida = 1;
 	
 	for(int i=0;i<nArestas;i++){ // para cada aresta na lista, preenche uma linha da matriz com as conexões
-		G->matrizInc[i][G->listaArestas[i].first]++;
-		G->matrizInc[i][G->listaArestas[i].second]+=nSaida;		
+		G->matrizInc[i][G->listaArestas[i].x]++;
+		G->matrizInc[i][G->listaArestas[i].y]+=nSaida;		
 	}
 }
 

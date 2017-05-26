@@ -41,14 +41,14 @@ void imprimeComplemento(Grafo G){
 
 void imprimeListaArestas(Grafo G){
 	for (auto aresta : G.listaArestas)
-		cout << "(" << aresta.first << "," << aresta.second << ") ";
+		cout << "(" << aresta.x << "," << aresta.y << ") [" << aresta.peso << "]\n";
 	cout << endl;
 }
 
 void mostraMenu(){
 	cout << endl;
 	cout << "Menu" << endl;
-	cout << "[0] Encerrar\n[1] Matriz de Adjacencia\n[2] Lista de Adjacencia\n[3] Grau de Cada No\n[4] Inserir No\n[5] Remover No\n[6] Complemento do Grafo\n[7] Matriz de Incidencia\n[8] Lista de Arestas\n[9] Conexidade do Grafo\n[10] Quantidade de Componentes\n[11] Circuito Euleriano\n[12] Dijkstra\n[13] BFS\n[14] DFS" << endl;	
+	cout << "[0] Encerrar\n[1] Matriz de Adjacencia\n[2] Lista de Adjacencia\n[3] Grau de Cada No\n[4] Inserir No\n[5] Remover No\n[6] Complemento do Grafo\n[7] Matriz de Incidencia\n[8] Lista de Arestas\n[9] Conexidade do Grafo\n[10] Quantidade de Componentes\n[11] Circuito Euleriano\n[12] Dijkstra\n[13] BFS\n[14] DFS\n[15] Kruskal" << endl;	
 	cout << endl;
 }
 
